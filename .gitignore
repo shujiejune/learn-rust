@@ -1,0 +1,36 @@
+# Ignore target/ directories in all Rust subprojects
+*/target/
+
+# Cargo.lock is optional for libraries; keep for binaries.
+# If all subprojects are libraries, you may uncomment:
+# */Cargo.lock
+
+# Backup & temporary files
+**/*.rs.bk
+*.swp
+*.swo
+*.tmp
+
+# IDE/editor-specific files
+.idea/
+.vscode/
+*.code-workspace
+
+# Mac and Linux junk
+.DS_Store
+Thumbs.db
+
+# Debugger and profiling artifacts
+*.dSYM/
+*.profraw
+*.profdata
+
+# Code coverage
+htmlcov/
+coverage/
+*.gcno
+*.gcda
+*.gcov
+
+# Logs
+*.log

@@ -37,6 +37,11 @@ println!("{num:0>5}", num = 1); // 00001
 
 println!("{num:0<5}", num = 1); // 10000
 
+println! calls a Rust macro instead of a function.
+
+when printing variables, put variable name in {};
+when printing the result of evaluating an experssion, put {} in the format string, and follow the format string with a comma-separated list of expressions.
+
 ### let
 
 let a = "abc";
@@ -68,6 +73,18 @@ println!("{}", num);
 
 you can mutate every variable declared with **let**
 
+#### random number
+
+how to get a random number in [1, 100]:
+
+use rand::Rng;
+
+let random_number = rand::thread_rng().gen_range(1..=100);
+
+gen_range() function takes a range expression (start..=end) as argument and returns a random number in this range.
+
+run "cargo doc --open" to build a documentation provided by all the specified dependencies in Cargo.toml locally and open in the browser.
+
 ### bool and char
 
 let booleans: bool = true;
@@ -79,3 +96,35 @@ let _unit = ();
 
 like **null** in other languages
 if you do not use a varibale, you should name it beginning with an underscore '_'
+
+### receive user input
+
+use std::io; // io is a **prelude** in the standard library
+
+io::stdin()
+    .read_line(&mut varname)
+    .expect();
+
+call functions from io module
+- stdin() has the return type std::io::Stdin, representing a handle to the standard input to the terminal.
+- read_line() takes whatever user types into standard input and append that to a string (passed as an argument), returns a Result value of type enumeration (Ok and Err, encoding error-handling information).
+- expect() is an error-handling function defined on Result values:
+  - Result == Err, crash the program and display the message that passed as an argument to expect().
+  - Result == Ok, take the return value held by Ok and just return it.
+
+### loop
+
+switch-case:
+match a.cmp(&b) {
+    pattern1 => conduct1,
+    pattern2 => conduct2,
+    pattern3 => conduct3,
+}
+each line in match {} is an arm.
+
+infinite loop:
+loop {
+    /* code snippet to conduct */
+}
+
+
