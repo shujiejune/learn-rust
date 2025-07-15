@@ -8,6 +8,7 @@ fn main() {
 
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
+let x: Vec<_> = vec![1, 2, 3].into_iter().collect(); // unnecessary collect
     loop {
         println!("Please input your guess.");
 
