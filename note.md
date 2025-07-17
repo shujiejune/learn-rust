@@ -1,4 +1,4 @@
-## Basic Rust
+## Common Concepts
 
 ### compile and run
 
@@ -47,6 +47,11 @@ when printing the result of evaluating an experssion, put {} in the format strin
 let a = "abc";
 println!("Hexa for pointer {:p}", &a);
 
+## Data Type
+
+Rust is statically typed, it must know the types of all variables at the compile time.
+It has 4 primary scalar type: interger, float, bool, char.
+
 ### numbers
 
 #### integer
@@ -59,6 +64,18 @@ unsigned
 let num: u8 = 1;
 
 default is i32 and u32
+number literals that can be multiple numeric types allow a type suffic such as 57u8
+you can use _ as visual separator, e.g. 1_000 is equal to 1000
+
+**integer overflow**
+
+When compiling in debug mode, Rust will check for integer overflow that will cause panic at runtime.
+When compiling in release mode with --release flag, Rust will not check. Instead, if overflow occurs, Rust performs two's complement wrapping (256 -> 0 for u8).
+To explicitly handle the possibility of overflow, you can use families of methods:
+- wrap in all modes with wrapping_* methods, e.g. wrapping_add
+- return None value if overflow occurs with checked_* methods
+- return the value and a Boolean indicates whether there was overflow with overflowing_* methods
+- saturate at the value's minimum or maximum values with saturating_* methods
 
 #### float
 
@@ -89,6 +106,25 @@ run "cargo doc --open" to build a documentation provided by all the specified de
 
 let booleans: bool = true;
 let character: char = 'a';
+
+### compound type
+
+**tuple**
+
+fixed length
+
+let tup: (i32, f64, u8) = (500, 6.4, 1);
+
+a tuple element can be accessed with a period and index: tup.0
+
+**array**
+
+fixed length (unlike other languages)
+unlike a tuple, every element in an array must have the same type
+
+let a = [1, 2, 3];
+let a: [i32; 3] = [1, 2, 3];
+let a = [3; 5]; // initialize an array to contain the same value for every element
 
 ### unit type
 
